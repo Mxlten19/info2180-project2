@@ -45,4 +45,10 @@ CREATE TABLE IF NOT EXISTS notes (
 
 -- Insert statement that adds a user with the email adress admin@project2.com and the hashed password 'password123'
 INSERT INTO users (firstname, lastname, password, email, role) 
-VALUES ('Admin', 'User', '$2y$10$YourHashedPasswordHere', 'admin@project2.com', 'Admin');
+VALUES (
+    'Admin', 
+    'User', 
+    '$2y$10$YOUR_ACTUAL_HASH_HERE',  -- ← Replace with your actual hash
+    'admin@project2.com', 
+    'Admin'
+);
