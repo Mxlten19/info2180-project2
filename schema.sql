@@ -48,7 +48,7 @@ INSERT INTO users (firstname, lastname, password, email, role)
 VALUES (
     'Admin', 
     'User', 
-    '$2y$10$YOUR_ACTUAL_HASH_HERE',  -- ← Replace with your actual hash
+    '$2y$10$0zsz5c4ZltqDS4jiPl86jencSclDzs3ztBQ26QLtM4390R6unvtjq', 
     'admin@project2.com', 
     'Admin'
 );
