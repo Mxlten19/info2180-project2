@@ -1,41 +1,16 @@
 <?php
 include 'db_conn.php';
 
-$em = $_POST['email'] ?? '';
+if (isset($_POST["view"])){
+  $contact = $_POST['contact_id'] ?? '';
+}
 
-$stmt = $conn->query("SELECT * FROM contacts");
+$stmt = $conn->query("SELECT * FROM contacts WHERE id = $contact");
 
 $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  ?>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Company</th>
-        <th>Yelephone</th>
-        <th>Created</th>
-        <th>Updated</th>
-        <th>Assigned to</th>
-      </tr>
-      <?php foreach ($user as $row): ?>
-      <tr>
-        <td><?=htmlspecialchars($row['title'] . " " . $row['firstname'] . " " . $row['lastname'])?></td>
-        <td><?=htmlspecialchars($row['email'])?></td>
-        <td><?=htmlspecialchars($row['company'])?></td>
-        <td><?=htmlspecialchars($row['telephone'])?></td>
-        <td><?=htmlspecialchars($row['created_at'])?></td>
-        <!-- Add created-by here -->
-        <td><?=htmlspecialchars($row['updated_at'])?></td>
-        <td><?=htmlspecialchars($row['assigned_to'])?></td>
-      </tr>
-      <?php endforeach; ?>
-    </table>
-    <?php
-
-
-
 ?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -44,5 +19,22 @@ $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </head>
   <body>
     <?php include 'navigation.php';?>
+    <?php foreach ($user as $row): ?>
+    <div>
+        <h2><?=htmlspecialchars($row['title'] . " " . $row['firstname'] . " " . $row['lastname'])?></h2>
+        <p>Created on <?=htmlspecialchars($row['created_at'])?> by add this later</p>
+        <p>Updated on <?=htmlspecialchars($row['updated_at'])?></p>
+    </div>
+    <div>
+        <h3>Email</h3>
+        <p><?=htmlspecialchars($row['email'])?></p>
+        <h3>Telephone</h3>
+        <p><?=htmlspecialchars($row['telephone'])?></p>
+        <h3>Company</h3>
+        <p><?=htmlspecialchars($row['company'])?></p>
+        <h3>Assigned To</h3>
+        <p><?=htmlspecialchars($row['assigned_to'])?></p>
+    </div>
+    <?php endforeach; ?>
   </body>
 </html>
