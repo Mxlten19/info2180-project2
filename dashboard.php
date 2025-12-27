@@ -1,3 +1,9 @@
+<?php 
+include 'db_conn.php';
+$stmt = $conn->query("SELECT * FROM contacts");
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,15 +22,20 @@
           <th>Company</th>
           <th>Type</th>
         </tr>
-        
+        <?php foreach ($results as $row): ?>
         <tr>
-          <td><?=htmlspecialchars($row['title'])?></td>
-          <td><?=htmlspecialchars($row['firstname']) . ($row['lastname'])?></td>
+          <td><?=htmlspecialchars($row['title'] . " " . $row['firstname'] . " " . $row['lastname'])?></td>
           <td><?=htmlspecialchars($row['email'])?></td>
           <td><?=htmlspecialchars($row['company'])?></td>
           <td><?=htmlspecialchars($row['type'])?></td>
-          <td><?=htmlspecialchars($row['name'])?></td>
+          <td>
+            <form action="viewcontact.php" method="POST">
+              <input type="hidden" name="contact_id" value="<?= $row['id']; ?>">
+              <button id="view" type="submit" name="view">View</button>
+            </form>
+          <td>
         </tr>
+        <?php endforeach; ?>
       </table>
   </body>
 </html>
