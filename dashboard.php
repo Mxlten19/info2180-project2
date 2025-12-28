@@ -14,7 +14,9 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <?php include 'navigation.php';?>
 
       <h1>DASHBOARD</h1>
-      <button id ="add_contact">+Add Contact</button>
+      <form action="createcontact.php" method="POST">
+        <button id ="add_contact">+Add Contact</button>
+      </form>
       <table>
         <tr>
           <th>Name</th>
@@ -24,7 +26,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </tr>
         <?php foreach ($results as $row): ?>
         <tr>
-          <td><?=htmlspecialchars($row['title'] . " " . $row['firstname'] . " " . $row['lastname'])?></td>
+          <td><?=htmlspecialchars($row['title'] . ". " . $row['firstname'] . " " . $row['lastname'])?></td>
           <td><?=htmlspecialchars($row['email'])?></td>
           <td><?=htmlspecialchars($row['company'])?></td>
           <td><?=htmlspecialchars($row['type'])?></td>
