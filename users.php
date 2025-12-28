@@ -7,7 +7,22 @@ $stmt = $conn->query("SELECT * FROM users");
 
 $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  ?>
+?>  
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+      <meta charset="utf-8">
+      <title>Contacts</title>
+  </head>
+  <body>
+    <?php include 'navigation.php';?>
+  </body>
+</html>
+
+<?php 
+?>
     <table>
       <tr>
         <th>Name</th>
@@ -25,17 +40,4 @@ $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <?php endforeach; ?>
     </table>
     <?php
-
-
-
 ?>
-<!DOCTYPE html>
-<html>
-	<head>
-      <meta charset="utf-8">
-      <title>Contacts</title>
-  </head>
-  <body>
-    <?php include 'navigation.php';?>
-  </body>
-</html>

@@ -13,15 +13,14 @@ if (isset($_POST["save"])){
     $fname = filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_SPECIAL_CHARS);
     $lname = filter_input(INPUT_POST, "lastname", FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-    $telephone = filter_input(INPUT_POST, "telephone", FILTER_SANITIZE_STRING);
+    $telephone = filter_input(INPUT_POST, "telephone", FILTER_SANITIZE_SPECIAL_CHARS);
     $company = filter_input(INPUT_POST, "company", FILTER_SANITIZE_SPECIAL_CHARS);
+    
 
     $stmt = $conn->prepare("INSERT INTO contacts (title, firstname, lastname, email, telephone, company, type, assigned_to) VALUES (:title, :firstname, :lastname, :email, :telephone, :company, :type, :assigned_to)");
-    
     if (!$stmt){
         die("SQL Error: " . implode(" | ", $conn->errorInfo()));
     }
-        
         $stmt->bindParam(':title',$title);
         $stmt->bindParam(':firstname',$fname);
         $stmt->bindParam(':lastname',$lname);
@@ -33,8 +32,6 @@ if (isset($_POST["save"])){
 
         $stmt->execute();
         echo "Contact Successfully Added.";
-
-
 }
 
 
