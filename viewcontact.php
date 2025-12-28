@@ -2,12 +2,14 @@
 include 'db_conn.php';
 
 if (isset($_POST["view"])){
-  $contact = $_POST['contact_id'] ?? '';
+    $contact = $_POST['contact_id'] ?? '';
 }
 
 $stmt = $conn->query("SELECT * FROM contacts WHERE id = $contact");
-
 $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt = $conn->query("SELECT * FROM notes WHERE contact_id = $contact");
+$notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -33,7 +35,7 @@ $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <button id="switch">Switch to </button>
         </div>
     </header>
-    <section>
+    <section id="details">
         <div>
             <h3>Email</h3>
             <p><?=htmlspecialchars($row['email'])?></p>
@@ -51,7 +53,21 @@ $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p><?=htmlspecialchars($row['assigned_to'])?></p>
         </div>
     </section>
-    
+    <section>
+        <h3>Notes</h3>
+        <?php foreach ($notes as $note): ?>
+        <h3><?=htmlspecialchars($note['created_by'])?></h3>
+        <p><?=htmlspecialchars($note['comment'])?></p>
+        <h4><?=htmlspecialchars($note['created_at'])?></h4>
+        <?php endforeach; ?>
+        <form action="addnote.php" method="POST">
+            <input type="hidden" name="contact_id" value="<?= htmlspecialchars($row['id']) ?>">
+            <label for="notes">Add a note about <?=htmlspecialchars($row['firstname'])?></label>
+            <textarea id="comment" name="comment" placeholder="Enter details here"></textarea>
+            <button id="add" type="submit" name="add">Add note</button>
+        </form>
+    </section>
     <?php endforeach; ?>
+
   </body>
 </html>
