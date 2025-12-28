@@ -7,8 +7,8 @@ if (isset($_POST["add"])){
 
     $comment = filter_input(INPUT_POST, "comment", FILTER_SANITIZE_SPECIAL_CHARS);
 
-
-    $stmt = $conn->prepare("INSERT INTO notes (contact_id, comment) VALUES (:contact_id, :comment)");
+    $stmt = $conn->prepare("INSERT INTO notes (contact_id, comment, created_by) VALUES (:contact_id, :comment, :created_by)");
+    $stmt->bindParam(':created_by', $_SESSION['user_id']);
 
     if (!$stmt){
       die("SQL Error: " . implode(" | ", $conn->errorInfo()));
