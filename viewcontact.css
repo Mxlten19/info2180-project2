@@ -1,0 +1,27 @@
+body {
+    margin: 0px 20px;
+}
+
+header {
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+section#details {
+    display:grid;
+    grid-template-columns: 500px 500px;
+    grid-template-rows: 100px 100px;
+    border: 1px solid black;
+    padding: 0px 15px;
+    margin-top: 20px;
+}
+
+p {
+    padding: 0px;
+    margin: 0px;
+}
+
+section div h3 {
+    margin-bottom: 0px;
+}
