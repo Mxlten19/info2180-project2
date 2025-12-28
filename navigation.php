@@ -13,7 +13,8 @@ session_start();
     <nav>
       <ul>
         <li><a href="dashboard.php">Home</a></li>
-        <li><a href="newcontact.php">New Contact</a></li>
+        <li><a href="newcontact.php">New User</a></li>
+        <li><a href="createcontact.php">Create Contact</a></li>
         <li><a href="users.php">Users</a></li>
         <li><a href="dashboard.php">Logout</a></li>
       </ul>

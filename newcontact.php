@@ -43,10 +43,11 @@ if (isset($_POST["save"])){
 <html>
 	<head>
       <meta charset="utf-8">
-      <title>New Contact</title>
+      <title>Create User</title>
   </head>
   <body>
     <?php include 'navigation.php';?>
+    <h1>New User</h1>
     <form action="newcontact.php" method="POST">
         <label for="firstname">First Name</label>
         <input id="firstname" type="text" name="firstname" placeholder="First Name">
