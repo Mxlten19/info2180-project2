@@ -1,5 +1,7 @@
 <?php 
 include 'db_conn.php';
+$stmt = $conn->query("SELECT * FROM contacts");
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //filter all, support, lead and assigned to me
 
 $filter = $_POST['filter'] ?? 'all';
